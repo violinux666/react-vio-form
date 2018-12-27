@@ -2,12 +2,22 @@
 
 > React form tool
 
+A lightweight, customizable react component that make easily to manage you web form
+
 [![NPM](https://img.shields.io/npm/v/react-vio-form.svg)](https://www.npmjs.com/package/react-vio-form) 
 
 ## Install
 
 ```bash
 npm install --save react-vio-form
+```
+
+## Run example
+```
+npm start
+# (in another tab)
+cd example
+npm start # runs create-react-app dev server
 ```
 
 ## Usage
@@ -127,6 +137,12 @@ class App extends Component {
     }
 }
 ```
+
+## Get Help
+
+- Contact me on iewnap@outlook.com
+- or if appropriate; raise an issue on Github
+
 ## License
 
 MIT © [violinux666](https://github.com/violinux666)
