@@ -129,4 +129,4 @@ class App extends Component {
 ```
 ## License
 
-MIT © [](https://github.com/)
+MIT © [violinux666](https://github.com/violinux666)

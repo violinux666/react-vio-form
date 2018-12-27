@@ -1,10 +1,10 @@
 {
   "name": "react-vio-form",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "react form tool",
   "author": "violinux666",
   "license": "MIT",
-  "repository": "/react-vio-form",
+  "repository": "https://github.com/violinux666/react-vio-form",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
