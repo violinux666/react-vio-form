@@ -4,7 +4,7 @@
   "description": "react form tool",
   "author": "violinux666",
   "license": "MIT",
-  "repository": "https://github.com/violinux666/react-vio-form",
+  "homepage": "https://github.com/violinux666/react-vio-form",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
