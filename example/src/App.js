@@ -22,7 +22,8 @@ class App extends Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-                <Field component={InputGroup} fieldName="account" title="Account" regexp={requiredExp} message="Not be empty"></Field>
+                <Field component={InputGroup} fieldName="username" title="Username" regexp={requiredExp} message="Not be empty"></Field>
+                <Field component={InputGroup} fieldName="address" title="Address"></Field>
                 <Field component={InputGroup} fieldName="password" title="Password" type="password" regexp={requiredExp} message="Not be empty"></Field>
                 <button type="submit">Submit</button>
             </Form>

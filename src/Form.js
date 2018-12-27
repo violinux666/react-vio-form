@@ -1,39 +1,62 @@
 import React, { Component } from 'react';
 import FormContext from './FormContext'
+import isEmptyObj from './util/isEmptyObj'
 class Form extends Component {
     constructor(){
         super();
+        this.fieldMap={};
         this.model={};
         this.messageMap={};
     }
-    componentWillUnmount(){
-    }
-    handleChange=({fieldName,message,regexp},value)=>{
-        if(regexp.test(value)){
-            this.model[fieldName]=value;
-        }else{
+    handleChange=({fieldName,message,regexp,updateInfo},value)=>{
+        if(value==undefined)
+            value='';
+        if(regexp&&!regexp.test(value)){
             this.messageMap[fieldName]=message;
+        }else{
+            delete this.messageMap[fieldName];
         }
+        this.model[fieldName]=value;
+        updateInfo({
+            value,
+            message:this.messageMap[fieldName]
+        });
     }
     handleSubmit=(evnet)=>{
-        this.props.onSubmit.call(null,{model:this.model});
         event.preventDefault();
-    }
-    getFormContext=(param)=>{
-        let {fieldName,message,regexp}=param;
-        return {
-            value:this.model[fieldName],
-            message:this.messageMap[fieldName],
-            onChange:(value)=>{
-                this.handleChange(param,value)
-            }
+        this.validateAllField();
+        let {model,messageMap}=this;
+        if(isEmptyObj(messageMap)){
+            this.props.onSubmit.call(null,{model:model});
         }
+    }
+    validateAllField=()=>{
+        // trigger all field change event
+        let {fieldMap,model}=this;
+        for(let i in fieldMap){
+            let {registerInfo}=fieldMap[i];
+            this.handleChange(registerInfo,model[registerInfo.fieldName])
+        }
+    }
+    register=(registerInfo)=>{
+        let {fieldName}=registerInfo;
+        if(!this.fieldMap[fieldName]){
+            // hasn't registered
+            this.fieldMap[fieldName]={
+                registerInfo,
+                onChange:(value)=>{
+                    this.handleChange(registerInfo,value)
+                }
+            }
+            
+        }
+        return this.fieldMap[fieldName];
     }
     render() {
         let {children,onSubmit}=this.props;
         return (
             <FormContext.Provider value={{
-                getFormContext:this.getFormContext
+                register:this.register
             }}>
                 <form onSubmit={this.handleSubmit}>
                     {children}
