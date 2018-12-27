@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import FormContext from './FormContext'
 import isEmptyObj from './util/isEmptyObj'
+import formManager from './formManager'
 class Form extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.fieldMap={};
         this.model={};
         this.messageMap={};
@@ -11,8 +12,11 @@ class Form extends Component {
             setError:(fieldName,message)=>{
                 this.messageMap[fieldName]=message;
             },
+            getModel:()=>this.model,
             submit:()=>this.handleSubmit()
         };
+        let {id}=props;
+        id&&formManager.put(id,this.form);
     }
     shouldComponentUpdate(){
         // only Field Component will update
