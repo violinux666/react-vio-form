@@ -8,7 +8,12 @@ class Form extends Component {
         this.model={};
         this.messageMap={};
     }
+    shouldComponentUpdate(){
+        // only Field Component will update
+        return false;
+    }
     handleChange=({fieldName,message,regexp,updateInfo},value)=>{
+        // assign and validate
         if(value==undefined)
             value='';
         if(regexp&&!regexp.test(value)){
@@ -17,6 +22,7 @@ class Form extends Component {
             delete this.messageMap[fieldName];
         }
         this.model[fieldName]=value;
+        // trigger Field's setState
         updateInfo({
             value,
             message:this.messageMap[fieldName]
