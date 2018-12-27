@@ -7,21 +7,31 @@ class Form extends Component {
         this.fieldMap={};
         this.model={};
         this.messageMap={};
+        this.form={
+            setError:(fieldName,message)=>{
+                this.messageMap[fieldName]=message;
+            },
+            submit:()=>this.handleSubmit()
+        };
     }
     shouldComponentUpdate(){
         // only Field Component will update
         return false;
     }
-    handleChange=({fieldName,message,regexp,updateInfo},value)=>{
-        // assign and validate
+    handleChange=({fieldName,message,regexp,updateInfo,onChange},value)=>{
+        
         if(value==undefined)
             value='';
+        // assign and validate
         if(regexp&&!regexp.test(value)){
             this.messageMap[fieldName]=message;
         }else{
             delete this.messageMap[fieldName];
         }
         this.model[fieldName]=value;
+        // callback
+        let {model,form}=this;
+        onChange&&onChange(value,{model,form});
         // trigger Field's setState
         updateInfo({
             value,
@@ -29,7 +39,7 @@ class Form extends Component {
         });
     }
     handleSubmit=(event)=>{
-        event.preventDefault();
+        event&&event.preventDefault();
         this.validateAllField();
         let {model,messageMap}=this;
         if(isEmptyObj(messageMap)){
@@ -45,7 +55,7 @@ class Form extends Component {
         }
     }
     register=(registerInfo)=>{
-        let {fieldName}=registerInfo;
+        let {fieldName,onChange}=registerInfo;
         if(!this.fieldMap[fieldName]){
             // hasn't registered
             this.fieldMap[fieldName]={

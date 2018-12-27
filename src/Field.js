@@ -9,7 +9,7 @@ class Field extends React.PureComponent {
         this.state={};
     }
     componentWillUnmount(){
-        // when destroyed
+        // TODO: when destroyed
     }
     getComponentName=()=>{
         return this.props.component;
@@ -19,11 +19,12 @@ class Field extends React.PureComponent {
         this.setState({value,message});
     }
     render() {
-        let {fieldName,message,regexp,...other}=this.props;
+        let {fieldName,message,regexp,onChange,...other}=this.props;
         let Component=this.getComponentName();
         let RegisterInfo={
             fieldName,message,regexp,
-            updateInfo:this.updateInfo
+            updateInfo:this.updateInfo,
+            onChange
         }
         let _value=this.state.value;
         let _message=this.state.message;
@@ -38,7 +39,7 @@ class Field extends React.PureComponent {
                             message:_message
                         }
                         return (
-                            <Component meta={meta} {...other}></Component>
+                            <Component {...meta} {...other}></Component>
                         )
                     }
                 }
