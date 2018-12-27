@@ -19,12 +19,15 @@ class App extends Component {
     handleSubmit=({model})=>{
         console.log('form data is :'+JSON.stringify(model));
     }
-    password2Change=(value,{model,form})=>{
-        if(model.password!==value){
+    passwordChange=(value,{model,form})=>{
+        if(model.password!==model.password2){
             form.setError('password2','password2 must be equaled to password');
+        }else{
+            form.setError('password2','');
         }
     }
     handleOutsideSubmit=()=>{
+        // param is Form id
         formManager.get('form').submit();
     }
     render() {
@@ -33,8 +36,8 @@ class App extends Component {
                 <Form onSubmit={this.handleSubmit} id="form">
                     <Field component={InputGroup} fieldName="username" title="Username" regexp={requiredExp} message="Not be empty"></Field>
                     <Field component={InputGroup} fieldName="address" title="Address"></Field>
-                    <Field component={InputGroup} fieldName="password" title="Password" type="password" regexp={requiredExp} message="Not be empty"></Field>
-                    <Field component={InputGroup} fieldName="password2" title="Password2" type="password" onChange={this.password2Change}></Field>
+                    <Field component={InputGroup} fieldName="password" title="Password" type="password" regexp={requiredExp} message="Not be empty" onChange={this.passwordChange}></Field>
+                    <Field component={InputGroup} fieldName="password2" title="Password2" type="password" onChange={this.passwordChange}></Field>
                     <button type="submit">Submit</button>
                 </Form>
                 <button onClick={this.handleOutsideSubmit}>outside submit</button>

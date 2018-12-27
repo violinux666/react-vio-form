@@ -10,7 +10,15 @@ class Form extends Component {
         this.messageMap={};
         this.form={
             setError:(fieldName,message)=>{
-                this.messageMap[fieldName]=message;
+                if(message)
+                    this.messageMap[fieldName]=message;
+                else
+                    delete this.messageMap[fieldName];
+                //refresh Field Component
+                this.fieldMap[fieldName].registerInfo.updateInfo({
+                    value:this.model[fieldName],
+                    message
+                });
             },
             getModel:()=>this.model,
             submit:()=>this.handleSubmit()
