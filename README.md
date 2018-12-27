@@ -1,2 +1,130 @@
 # react-vio-form
-React form tool
+
+> React form tool
+
+[![NPM](https://img.shields.io/npm/v/react-vio-form.svg)](https://www.npmjs.com/package/react-vio-form) 
+
+## Install
+
+```bash
+npm install --save react-vio-form
+```
+
+## Usage
+
+### basic
+
+***InputGroup.js***
+```jsx
+import React, { Component } from 'react';
+class InputGroup extends Component {
+  render() {
+      let {onChange,value,message,title,type="text"}=this.props;
+      return (
+          <div>
+              <label>{title}:</label>
+              <input type={type} onChange={e=>onChange(e.target.value)}/>
+              {message&&<span>{message}</span>}
+          </div>
+      );
+  }
+}
+export default InputGroup;
+```
+
+***App.js***
+```jsx
+import React, { Component } from 'react';
+import InputGroup from './InputGroup';
+let requiredExp=/\w{1,}/;
+class App extends Component {
+    handleSubmit=({model})=>{
+        console.log('form data is :'+JSON.stringify(model));
+    }
+    render() {
+        return (
+            <Form onSubmit={this.handleSubmit}>
+                <Field component={InputGroup} fieldName="username" title="Username" regexp={requiredExp} message="Not be empty"></Field>
+                <Field component={InputGroup} fieldName="address" title="Address"></Field>
+                <Field component={InputGroup} fieldName="password" title="Password" type="password" regexp={requiredExp} message="Not be empty"></Field>
+                <button type="submit">Submit</button>
+            </Form>
+        );
+    }
+}
+
+
+export default App;
+```
+
+### callback
+
+* ```<Form onSubmit={//}>```
+- ```<Field onChange={//}>```
+
+***App.js***
+```jsx
+class App extends Component {
+    handleSubmit=({model})=>{
+        //form submit callback
+        console.log('form data is :'+JSON.stringify(model));
+    }
+    passwordChange=(value,{model,form})=>{
+        //change callback
+        console.log(`password:${value}`);
+    }
+    render() {
+        return (
+            <div>
+                <Form onSubmit={this.handleSubmit} id="form">
+                    <Field component={InputGroup} fieldName="username" title="Username"></Field>
+                    <Field component={InputGroup} fieldName="password" title="Password" type="password" onChange={this.passwordChange}></Field>
+                    <button type="submit">Submit</button>
+                </Form>
+            </div>
+        );
+    }
+}
+```
+
+###API
+***App.js***
+```jsx
+let requiredExp=/\w{1,}/;
+class App extends Component {
+    handleSubmit=({model})=>{
+        //form submit callback
+        console.log('form data is :'+JSON.stringify(model));
+    }
+    handleOutsideSubmit=()=>{
+        // submit outside Form Component
+        // param is Form id
+        formManager.get('form').submit();
+    }
+    passwordChange=(value,{model,form})=>{
+        if(model.password!==model.password2){
+            //set Error Message
+            form.setError('password2','password2 must be equaled to password');
+        }else{
+            //clear Error Message
+            form.setError('password2','');
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <Form onSubmit={this.handleSubmit} id="form">
+                    <Field component={InputGroup} fieldName="username" title="Username"></Field>
+                    <Field component={InputGroup} fieldName="password" title="Password" type="password" regexp={requiredExp} message="Not be empty" onChange={this.passwordChange}></Field>
+                    <Field component={InputGroup} fieldName="password2" title="Password2" type="password" onChange={this.passwordChange}></Field>
+                </Form>
+                <button onClick={this.handleOutsideSubmit}>outside submit</button>
+            </div>
+        );
+    }
+}
+```
+## License
+
+MIT © [](https://github.com/)
