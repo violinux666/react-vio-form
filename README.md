@@ -87,8 +87,10 @@ class App extends Component {
 }
 ```
 
-###API
+### API
+
 ***App.js***
+
 ```jsx
 let requiredExp=/\w{1,}/;
 class App extends Component {
