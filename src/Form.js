@@ -22,7 +22,7 @@ class Form extends Component {
             message:this.messageMap[fieldName]
         });
     }
-    handleSubmit=(evnet)=>{
+    handleSubmit=(event)=>{
         event.preventDefault();
         this.validateAllField();
         let {model,messageMap}=this;
