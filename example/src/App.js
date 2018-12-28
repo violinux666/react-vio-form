@@ -23,7 +23,7 @@ class App extends Component {
         if(model.password!==model.password2){
             form.setError('password2','password2 must be equaled to password');
         }else{
-            form.setError('password2','');
+            form.clearError('password2');
         }
     }
     handleOutsideSubmit=()=>{

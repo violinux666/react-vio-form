@@ -80,6 +80,7 @@ export default App;
 
 ***App.js***
 ```jsx
+import React, { Component } from 'react'
 class App extends Component {
     handleSubmit=({model})=>{
         //form submit callback
@@ -109,6 +110,8 @@ class App extends Component {
 ***App.js***
 
 ```jsx
+import React, { Component } from 'react'
+import {Form,Field,formManager} from 'react-vio-form'
 let requiredExp=/\w{1,}/;
 class App extends Component {
     handleSubmit=({model})=>{
@@ -129,7 +132,6 @@ class App extends Component {
             form.setError('password2','');
         }
     }
-
     render() {
         return (
             <div>
