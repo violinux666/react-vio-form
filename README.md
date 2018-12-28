@@ -2,9 +2,11 @@
 
 > React form tool
 
-A lightweight, customizable react component that make easily to manage you web form
-
 [![NPM](https://img.shields.io/npm/v/react-vio-form.svg)](https://www.npmjs.com/package/react-vio-form) 
+
+## Intro
+
+A lightweight, customizable react component that make easily to manage you web form
 
 ## Install
 
@@ -23,6 +25,8 @@ npm start # runs create-react-app dev server
 ## Usage
 
 ### basic
+
+first,Customize your InputGroup Component
 
 ***InputGroup.js***
 ```jsx
@@ -142,6 +146,9 @@ class App extends Component {
 
 - Contact me on iewnap@outlook.com
 - or if appropriate; raise an issue on Github
+
+## Thanks
+[create-react-library](https://github.com/transitive-bullshit/create-react-library)
 
 ## License
 
