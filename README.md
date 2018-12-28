@@ -36,7 +36,7 @@ npm start # runs create-react-app dev server
 first,Customize your InputGroup Component
 
 ***InputGroup.js***
-```
+```jsx
 import React, { Component } from 'react';
 
 class InputGroup extends Component {
@@ -104,7 +104,7 @@ export default App;
 - ```<Field onChange={//}>``` will trigger when change
 
 ***App.js***
-```
+```jsx
 class App extends Component {
     handleSubmit=({model})=>{
         //form submit callback
