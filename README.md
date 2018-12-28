@@ -1,6 +1,6 @@
 # react-vio-form
 
-> React form tool
+> React form tool with not any dependencies
 
 [![NPM](https://img.shields.io/npm/v/react-vio-form.svg)](https://www.npmjs.com/package/react-vio-form) 
 
@@ -58,9 +58,11 @@ class App extends Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-                <Field component={InputGroup} fieldName="username" title="Username" regexp={requiredExp} message="Not be empty"></Field>
+                <Field component={InputGroup} fieldName="username" title="Username" 
+                regexp={requiredExp} message="Not be empty"></Field>
                 <Field component={InputGroup} fieldName="address" title="Address"></Field>
-                <Field component={InputGroup} fieldName="password" title="Password" type="password" regexp={requiredExp} message="Not be empty"></Field>
+                <Field component={InputGroup} fieldName="password" title="Password" 
+                type="password" regexp={requiredExp} message="Not be empty"></Field>
                 <button type="submit">Submit</button>
             </Form>
         );
@@ -92,7 +94,8 @@ class App extends Component {
             <div>
                 <Form onSubmit={this.handleSubmit} id="form">
                     <Field component={InputGroup} fieldName="username" title="Username"></Field>
-                    <Field component={InputGroup} fieldName="password" title="Password" type="password" onChange={this.passwordChange}></Field>
+                    <Field component={InputGroup} fieldName="password" title="Password" 
+                    type="password" onChange={this.passwordChange}></Field>
                     <button type="submit">Submit</button>
                 </Form>
             </div>
@@ -132,8 +135,10 @@ class App extends Component {
             <div>
                 <Form onSubmit={this.handleSubmit} id="form">
                     <Field component={InputGroup} fieldName="username" title="Username"></Field>
-                    <Field component={InputGroup} fieldName="password" title="Password" type="password" regexp={requiredExp} message="Not be empty" onChange={this.passwordChange}></Field>
-                    <Field component={InputGroup} fieldName="password2" title="Password2" type="password" onChange={this.passwordChange}></Field>
+                    <Field component={InputGroup} fieldName="password" title="Password" 
+                    type="password" regexp={requiredExp} message="Not be empty" onChange={this.passwordChange}></Field>
+                    <Field component={InputGroup} fieldName="password2" title="Password2" 
+                    type="password" onChange={this.passwordChange}></Field>
                 </Form>
                 <button onClick={this.handleOutsideSubmit}>outside submit</button>
             </div>
