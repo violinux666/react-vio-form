@@ -6,7 +6,14 @@
 
 ## Intro
 
-A lightweight, customizable react component that make easily to manage you web form
+A lightweight, customizable react component that make easily to manage you web form. require React16+
+
+[简体中文](https://github.com/violinux666/blog/issues/3)
+
+## changeLog
+
+- 1.2.0: form.clearError
+- 1.1.0: form.setError|form.getModel|form.submit
 
 ## Install
 
@@ -24,27 +31,45 @@ npm start # runs create-react-app dev server
 
 ## Usage
 
-### basic
+### quick start
 
 first,Customize your InputGroup Component
 
 ***InputGroup.js***
-```jsx
+```
 import React, { Component } from 'react';
+
 class InputGroup extends Component {
-  render() {
-      let {onChange,value,message,title,type="text"}=this.props;
-      return (
-          <div>
-              <label>{title}:</label>
-              <input type={type} onChange={e=>onChange(e.target.value)}/>
-              {message&&<span>{message}</span>}
-          </div>
-      );
+    render() {
+    let {
+        onChange,//required 
+        value,//required 
+        message,//required
+        title,//custom prop
+        type="text"//custom prop
+    }=this.props;
+    return (
+        <div>
+            <label>{title}:</label>
+            <input type={type} onChange={e=>onChange(e.target.value)}/>
+            {message&&<span>{message}</span>}
+        </div>
+    );
   }
 }
 export default InputGroup;
 ```
+
+And then,config your form APP
+
+Field.props:
+- component:Your customizable React Component
+- fieldName:Form field property name
+- regexp:The validate regexp
+- message:when field's validation fails,pass to InputGroup props
+
+Form.props:
+- onSubmit: will trigger without any error
 
 ***App.js***
 ```jsx
@@ -75,12 +100,11 @@ export default App;
 
 ### callback
 
-* ```<Form onSubmit={//}>```
-- ```<Field onChange={//}>```
+* ```<Form onSubmit={//}>``` will trigger without any error
+- ```<Field onChange={//}>``` will trigger when change
 
 ***App.js***
-```jsx
-import React, { Component } from 'react'
+```
 class App extends Component {
     handleSubmit=({model})=>{
         //form submit callback
@@ -107,8 +131,18 @@ class App extends Component {
 
 ### API
 
-***App.js***
+form object can control the Form App.
+how to get form object:
+- formManager.get(id)
+- the arguments to the callback function
 
+form API:
+- setError(fieldName,message) 
+- clearError(fieldName)
+- getModel()
+- submit()
+
+***App.js***
 ```jsx
 import React, { Component } from 'react'
 import {Form,Field,formManager} from 'react-vio-form'
@@ -129,7 +163,7 @@ class App extends Component {
             form.setError('password2','password2 must be equaled to password');
         }else{
             //clear Error Message
-            form.setError('password2','');
+            form.clearError('password2');
         }
     }
     render() {
@@ -155,7 +189,7 @@ class App extends Component {
 - raise an issue on Github.[Submit a issue](https://github.com/violinux666/react-vio-form/issues/new)
 
 ## Thanks
-[create-react-library](https://github.com/transitive-bullshit/create-react-library)
+- [create-react-library](https://github.com/transitive-bullshit/create-react-library)
 
 ## License
 
