@@ -145,7 +145,7 @@ class App extends Component {
 ## Get Help
 
 - Contact me on iewnap@outlook.com
-- or if appropriate; raise an issue on Github
+- raise an issue on Github.[Submit a issue](https://github.com/violinux666/react-vio-form/issues/new)
 
 ## Thanks
 [create-react-library](https://github.com/transitive-bullshit/create-react-library)
