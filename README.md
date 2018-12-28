@@ -4,11 +4,15 @@
 
 [![NPM](https://img.shields.io/npm/v/react-vio-form.svg)](https://www.npmjs.com/package/react-vio-form) 
 
+[demo](https://violinux666.github.io/react-vio-form/)
+
+[简体中文](https://github.com/violinux666/blog/issues/3)
+
 ## Intro
 
 A lightweight, customizable react component that make easily to manage you web form. require React16+
 
-[简体中文](https://github.com/violinux666/blog/issues/3)
+
 
 ## changeLog
 
